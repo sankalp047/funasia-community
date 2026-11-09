@@ -6,7 +6,8 @@ services:
     name: funasia-community
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
-    pullRequestPreviewsEnabled: false
+    previews:
+      generation: "off"   # quoted: bare `off` is read as boolean false in YAML
     envVars:
       # Public URL of the site — used for canonical tags, sitemap, robots.txt
       # and llms.txt. Change it if you launch on a different domain.
@@ -36,7 +37,7 @@ services:
         destination: /
       - type: redirect
         source: /social.php
-        destination: /#gallery
+        destination: /
       # Sign-in and the community app are client-side routes served by the
       # app shell. (Render applies rewrites only when no file exists at a path.)
       - type: rewrite
