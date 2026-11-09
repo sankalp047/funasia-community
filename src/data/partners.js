@@ -1,0 +1,721 @@
+// ---------------------------------------------------------------------------
+// FunAsia Community Outreach — partner directory.
+// Logos were extracted from the FunAsia Community presentation (slides 6–10)
+// and live in /public/partners/<slug>.webp. Dimensions come from
+// partner-logos.json (generated alongside the images).
+//
+// `verify: true` marks entries whose identity or details we inferred from the
+// logo alone — please confirm them with the organization before launch.
+// `website` is optional; when it's missing the UI offers a web search instead.
+// When the Firebase backend lands, this list can move to a `partners` collection.
+// ---------------------------------------------------------------------------
+import logoSizes from './partner-logos.json'
+
+export const PARTNER_REGIONS = [
+  'Dallas–Fort Worth',
+  'Austin',
+  'San Antonio',
+  'Houston',
+  'Central Texas',
+  'Nationwide',
+]
+
+export const PARTNER_CATEGORIES = [
+  'Faith & Temples',
+  'Culture & Community',
+  'Health & Human Services',
+  'Education & Youth',
+  'Food & Hunger',
+  'Foundations & Giving',
+  'Civic & Public',
+  'Wellness & Lifestyle',
+]
+
+const DFW = 'Dallas–Fort Worth'
+const NATION = 'Nationwide'
+
+const RAW = [
+  // ----------------------------------------------------------- slide 6 ----
+  {
+    slug: 'catholic-charities-dallas',
+    name: 'Catholic Charities Dallas',
+    category: 'Health & Human Services',
+    region: DFW,
+    description:
+      'Serves families across North Texas with programs spanning food security, housing, immigration and refugee services, and economic stability.',
+  },
+  {
+    slug: 'dallas-foundation',
+    name: 'The Dallas Foundation',
+    category: 'Foundations & Giving',
+    region: DFW,
+    description:
+      'A community foundation that connects donors with the causes and nonprofits strengthening Dallas.',
+  },
+  {
+    slug: 'childrens-advocacy-center-nt',
+    name: "Children's Advocacy Center for North Texas",
+    category: 'Health & Human Services',
+    region: DFW,
+    description:
+      'Supports children who have experienced abuse across Denton, Wise and Jack counties, coordinating care with child-protection partners.',
+  },
+  {
+    slug: 'dallas-meditation-center',
+    name: 'Dallas Meditation Center',
+    category: 'Wellness & Lifestyle',
+    region: DFW,
+    description: 'A nonprofit offering meditation, mindfulness and contemplative practice to the community.',
+  },
+  {
+    slug: 'pakistan-society-north-texas',
+    name: 'Pakistan Society of North Texas',
+    category: 'Culture & Community',
+    region: DFW,
+    description:
+      'Celebrates Pakistani heritage and brings the North Texas community together through cultural events and service.',
+  },
+  {
+    slug: 'chetna',
+    name: 'Chetna',
+    category: 'Health & Human Services',
+    region: DFW,
+    description:
+      '“Peace Begins at Home” — supporting individuals and families affected by domestic abuse in the South Asian community.',
+    verify: true,
+  },
+  {
+    slug: 'iacc-plano-masjid',
+    name: 'Islamic Association of Collin County (Plano Masjid)',
+    shortName: 'IACC — Plano Masjid',
+    category: 'Faith & Temples',
+    region: DFW,
+    city: 'Plano, TX',
+    description: 'A mosque and community center serving Muslim families across Collin County.',
+  },
+  {
+    slug: 'dallas-childrens-charities',
+    name: "Dallas Children's Charities",
+    category: 'Education & Youth',
+    region: DFW,
+    description: 'Supports programs that improve the lives of children and families in Dallas.',
+    verify: true,
+  },
+  {
+    slug: 'pacusa',
+    name: 'Pakistani American Community of USA (PACUSA)',
+    shortName: 'PACUSA',
+    category: 'Culture & Community',
+    region: DFW,
+    description:
+      'A community organization (est. 2025) uniting Pakistani Americans through culture, civic engagement and service.',
+  },
+  {
+    slug: 'dallas-hope-charities',
+    name: 'Dallas Hope Charities',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: '“Hope for All” — providing housing and support for young adults facing homelessness in Dallas.',
+  },
+  {
+    slug: 'foster-care-angels',
+    name: 'The Foster Care Angels Dallas–Ft. Worth',
+    shortName: 'Foster Care Angels DFW',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Since 2018, supporting children in foster care and the families who care for them across DFW.',
+  },
+  {
+    slug: 'ekal-vidyalaya',
+    name: 'Ekal Vidyalaya',
+    category: 'Education & Youth',
+    region: NATION,
+    description: 'A people’s movement running one-teacher schools that bring education to children in rural India.',
+  },
+  {
+    slug: 'shri-ram-mandir-plano',
+    name: 'Shri Ram Mandir',
+    category: 'Faith & Temples',
+    region: DFW,
+    city: 'Plano, TX',
+    description: 'A Hindu temple in Plano dedicated to Lord Ram, serving devotees across Collin County.',
+  },
+  {
+    slug: 'shree-raghunath-temple',
+    name: 'Shree Raghunath Temple',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'A Hindu temple community serving devotees in North Texas.',
+    verify: true,
+  },
+  {
+    slug: 'pratham-usa',
+    name: 'Pratham USA',
+    category: 'Education & Youth',
+    region: NATION,
+    description:
+      'Supports Pratham, one of India’s largest education nonprofits, helping millions of children learn to read and do math.',
+  },
+  {
+    slug: 'yamuna-nikunj',
+    name: 'Yamuna Nikunj — Shri Goverdhan Nathji Mandir',
+    shortName: 'Yamuna Nikunj',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: '“Unite for a Noble Cause” — a temple community devoted to Shri Goverdhan Nathji.',
+  },
+  {
+    slug: 'sewa-usa',
+    name: 'Sewa International USA',
+    shortName: 'Sewa USA',
+    category: 'Health & Human Services',
+    region: NATION,
+    description:
+      'A humanitarian nonprofit focused on disaster relief, family services and volunteerism — “Service Above Self.” Its DFW chapter runs the annual 5K Run/Walk.',
+  },
+  {
+    slug: 'dfw-hindu-temple-society',
+    name: 'DFW Hindu Temple Society — Ekta Mandir',
+    shortName: 'Ekta Mandir',
+    category: 'Faith & Temples',
+    region: DFW,
+    city: 'Irving, TX',
+    description: 'The Ekta Mandir in Irving brings devotees of many Hindu traditions together under one roof.',
+  },
+  {
+    slug: 'heartfulness',
+    name: 'Heartfulness Institute',
+    shortName: 'Heartfulness',
+    category: 'Wellness & Lifestyle',
+    region: NATION,
+    description: '“Advancing with compassion” — free heartfulness meditation and relaxation training for all ages.',
+  },
+  {
+    slug: 'maratha-mandal',
+    name: 'Maratha Mandal',
+    category: 'Culture & Community',
+    region: DFW,
+    description: 'A Marathi cultural organization, established in 1986, celebrating Maharashtrian heritage.',
+    verify: true,
+  },
+  {
+    slug: 'zaka',
+    name: 'ZAKA Search and Rescue',
+    shortName: 'ZAKA',
+    category: 'Health & Human Services',
+    region: NATION,
+    description: 'A volunteer rescue and recovery organization — “The angels who dare to do what none can bear.”',
+  },
+
+  // ----------------------------------------------------------- slide 7 ----
+  {
+    slug: 'solace-charities',
+    name: 'Solace Charities',
+    category: 'Health & Human Services',
+    region: DFW,
+    description:
+      'Supports critically ill children and their families in Kerala, India — raising awareness and funds through events like the High Five concert.',
+  },
+  {
+    slug: 'dcica',
+    name: 'Denton County India Cultural Association',
+    shortName: 'DCICA',
+    category: 'Culture & Community',
+    region: DFW,
+    description: 'Celebrates Indian culture and festivals with families across Denton County.',
+  },
+  {
+    slug: 'vibha',
+    name: 'Vibha',
+    category: 'Education & Youth',
+    region: NATION,
+    description: '“A brighter future for children” — working to bring high-quality education to every child.',
+  },
+  {
+    slug: 'vyo',
+    name: 'Vallabh Youth Organization (VYO)',
+    shortName: 'VYO',
+    category: 'Faith & Temples',
+    region: NATION,
+    description: 'A Vaishnav youth and community organization dedicated to seva and spiritual growth.',
+  },
+  {
+    slug: 'north-texas-community-foundation',
+    name: 'North Texas Community Foundation',
+    category: 'Foundations & Giving',
+    region: DFW,
+    description: 'A community foundation helping donors give back to causes across North Texas.',
+  },
+  {
+    slug: 'cancer-support-community-nt',
+    name: 'Cancer Support Community North Texas',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Free social and emotional support for people impacted by cancer and their loved ones.',
+  },
+  {
+    slug: 'dallas-trinity-fc',
+    name: 'Dallas Trinity FC',
+    category: 'Wellness & Lifestyle',
+    region: DFW,
+    description: 'Dallas’s professional women’s soccer club and an active partner in the community.',
+  },
+  {
+    slug: 'animedh',
+    name: 'Animedh Charitable Trust',
+    shortName: 'Animedh',
+    category: 'Health & Human Services',
+    region: NATION,
+    description: '“Act to make a difference” — a charitable trust committed to community service.',
+    verify: true,
+  },
+  {
+    slug: 'texas-discovery-gardens',
+    name: 'Texas Discovery Gardens at Fair Park',
+    category: 'Wellness & Lifestyle',
+    region: DFW,
+    description:
+      'A botanical garden and butterfly house at Fair Park teaching sustainable gardening and conservation.',
+  },
+  {
+    slug: 'community-does-it',
+    name: 'Community Does It!',
+    category: 'Culture & Community',
+    region: DFW,
+    description: 'Brings neighbors together to volunteer and give back to the local community.',
+    verify: true,
+  },
+  {
+    slug: 'dallas-leadership-foundation',
+    name: 'Dallas Leadership Foundation',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Works to restore Dallas neighborhoods through housing, mentorship and leadership development.',
+  },
+  {
+    slug: 'community-council-dallas',
+    name: 'Community Council of Greater Dallas',
+    shortName: 'Community Council',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Connects people in need with community resources and services across Greater Dallas.',
+  },
+  {
+    slug: 'now-forward',
+    name: 'now>forward',
+    category: 'Culture & Community',
+    region: DFW,
+    description: 'A community partner supporting local initiatives and programs.',
+    verify: true,
+  },
+  {
+    slug: 'my-sisters-place',
+    name: "My Sister's Place",
+    category: 'Health & Human Services',
+    region: DFW,
+    description: '“Ending violence, empowering lives” — support and shelter for survivors of domestic violence.',
+    verify: true,
+  },
+  {
+    slug: 'community-partners-of-dallas',
+    name: 'Community Partners of Dallas',
+    category: 'Health & Human Services',
+    region: DFW,
+    description:
+      '“Healing for abused children starts here” — providing resources for children in the care of Dallas County child protective services.',
+  },
+  {
+    slug: 'promise-hill-project',
+    name: 'Promise Hill Project',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'A community nonprofit and FunAsia outreach partner.',
+    verify: true,
+  },
+  {
+    slug: 'neighbors-nourishing-neighbors',
+    name: 'Neighbors Nourishing Neighbors',
+    category: 'Food & Hunger',
+    region: DFW,
+    description: 'Fights hunger by connecting neighbors with nutritious food.',
+    verify: true,
+  },
+  {
+    slug: 'neighborly',
+    name: 'Neighborly Senior Care Network',
+    shortName: 'Neighborly',
+    category: 'Health & Human Services',
+    region: NATION,
+    description: 'Celebrating 60 years (1966–2026) of helping seniors live with independence and dignity.',
+    verify: true,
+  },
+
+  // ----------------------------------------------------------- slide 8 ----
+  {
+    slug: 'sankara-eye-foundation',
+    name: 'Sankara Eye Foundation',
+    category: 'Health & Human Services',
+    region: NATION,
+    description: 'Works to eradicate curable blindness in India through free eye care and surgeries.',
+  },
+  {
+    slug: 'gayatri-pariwar',
+    name: 'All World Gayatri Pariwar',
+    shortName: 'Gayatri Pariwar',
+    category: 'Faith & Temples',
+    region: NATION,
+    description: 'A spiritual and social movement centered on the Gayatri mantra, self-improvement and service.',
+    verify: true,
+  },
+  {
+    slug: 'baps',
+    name: 'BAPS Swaminarayan Sanstha',
+    shortName: 'BAPS',
+    category: 'Faith & Temples',
+    region: DFW,
+    description:
+      'A Hindu fellowship known for its mandirs, humanitarian service and character-building programs for all ages.',
+  },
+  {
+    slug: 'chinmaya-mission-dfw',
+    name: 'Chinmaya Mission Dallas/Fort Worth',
+    shortName: 'Chinmaya Mission DFW',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'Offers Vedanta study, Bal Vihar classes for children and spiritual programs for families.',
+  },
+  {
+    slug: 'fmht',
+    name: 'FMHT',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'A Hindu community organization in North Texas.',
+    verify: true,
+  },
+  {
+    slug: 'hindu-temple-greater-fort-worth',
+    name: 'Hindu Temple of Greater Fort Worth',
+    category: 'Faith & Temples',
+    region: DFW,
+    city: 'Fort Worth, TX',
+    description: 'A Hindu temple serving devotees and families across Tarrant County.',
+  },
+  {
+    slug: 'hindus-of-dfw',
+    name: 'Hindus of DFW',
+    category: 'Culture & Community',
+    region: DFW,
+    description: 'A community network connecting Hindu families and organizations across the metroplex.',
+  },
+  {
+    slug: 'swaminarayan-gurukul',
+    name: 'Shree Swaminarayan Gurukul',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'Rooted in the Rajkot Gurukul tradition of education, culture and spirituality.',
+    verify: true,
+  },
+  {
+    slug: 'vaishnav-sangh-usa',
+    name: 'Vaishnav Sangh of USA',
+    category: 'Faith & Temples',
+    region: NATION,
+    description: 'A Vaishnav community organization bringing devotees together through worship and festivals.',
+  },
+  {
+    slug: 'sai-baba-temples',
+    name: 'Sai Baba Temples',
+    category: 'Faith & Temples',
+    region: NATION,
+    description: 'Connecting devotees with Shirdi Sai Baba temples and events.',
+    verify: true,
+  },
+  {
+    slug: 'odisha-foundation',
+    name: 'The Odisha Foundation',
+    category: 'Culture & Community',
+    region: NATION,
+    description: 'Supports community and development initiatives connected to Odisha.',
+    verify: true,
+  },
+  {
+    slug: 'ambedkarite-buddhist-texas',
+    name: 'Ambedkarite Buddhist Association of Texas',
+    shortName: 'ABAT',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'Promotes the teachings of the Buddha and Dr. B.R. Ambedkar, and the values of equality and justice.',
+  },
+  {
+    slug: 'yoga-bharati',
+    name: 'Yoga Bharati',
+    category: 'Wellness & Lifestyle',
+    region: NATION,
+    description: 'Offers yoga classes and teacher training to promote health and well-being.',
+  },
+  {
+    slug: 'jaina',
+    name: 'JAINA — Federation of Jain Associations in North America',
+    shortName: 'JAINA',
+    category: 'Faith & Temples',
+    region: NATION,
+    description: 'The umbrella organization for Jain associations across North America, established in 1981.',
+  },
+  {
+    slug: 'isha-foundation',
+    name: 'Isha Foundation',
+    category: 'Wellness & Lifestyle',
+    region: NATION,
+    description: 'Founded by Sadhguru, offering yoga and meditation programs alongside social and environmental initiatives.',
+  },
+  {
+    slug: 'foga',
+    name: 'Federation of Gujarati Associations of USA (FOGA)',
+    shortName: 'FOGA',
+    category: 'Culture & Community',
+    region: NATION,
+    description: 'An umbrella body bringing Gujarati associations across the United States together.',
+  },
+  {
+    slug: 'osho-universal',
+    name: 'Osho Universal',
+    category: 'Wellness & Lifestyle',
+    region: NATION,
+    description: 'A meditation and wellness community inspired by the teachings of Osho.',
+    verify: true,
+  },
+  {
+    slug: 'shirdi-sai-center-texas',
+    name: 'Shirdi Sai Center of Texas',
+    category: 'Faith & Temples',
+    region: DFW,
+    city: 'Irving, TX',
+    address: '1037 West Rochelle Rd, Irving, TX 75062',
+    description: 'A 501(c)(3) Sai Baba temple and community center in Irving.',
+  },
+
+  // ----------------------------------------------------------- slide 9 ----
+  {
+    slug: 'city-of-dallas',
+    name: 'City of Dallas',
+    category: 'Civic & Public',
+    region: DFW,
+    description: 'The City of Dallas — a civic partner in community programs and events.',
+  },
+  {
+    slug: 'sewpowerful',
+    name: 'SewPowerful',
+    category: 'Education & Youth',
+    region: NATION,
+    description: 'Empowers women through sewing — creating income and helping keep girls in school.',
+  },
+  {
+    slug: 'mighty-hero-homes',
+    name: 'Mighty Hero Homes',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Helping heroes and their families find a place to call home.',
+    verify: true,
+  },
+  {
+    slug: 'dallas-life',
+    name: 'Dallas LIFE',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Seventy years of homeless recovery — shelter, meals and long-term recovery programs in Dallas.',
+  },
+  {
+    slug: 'communities-foundation-texas',
+    name: 'Communities Foundation of Texas',
+    category: 'Foundations & Giving',
+    region: DFW,
+    description: 'One of Texas’s largest community foundations, connecting donors with causes across the state.',
+  },
+  {
+    slug: 'tarrant-area-food-bank',
+    name: 'Tarrant Area Food Bank',
+    category: 'Food & Hunger',
+    region: DFW,
+    city: 'Fort Worth, TX',
+    description: 'Fights hunger across North Texas, distributing food through a network of partner agencies.',
+  },
+  {
+    slug: 'wellcommunity',
+    name: 'WellCommunity',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Promoting health, wellness and connection in the community.',
+    verify: true,
+  },
+  {
+    slug: 'ascend-dallas',
+    name: 'Ascend Dallas',
+    category: 'Health & Human Services',
+    region: DFW,
+    description: 'Formerly WiNGS Dallas — helping women and families build economic mobility and opportunity.',
+  },
+  {
+    slug: 'feed-the-funnel',
+    name: 'Feed the Funnel',
+    category: 'Food & Hunger',
+    region: DFW,
+    description: 'A community initiative and FunAsia outreach partner.',
+    verify: true,
+  },
+  {
+    slug: 'city-of-austin',
+    name: 'City of Austin',
+    category: 'Civic & Public',
+    region: 'Austin',
+    description: 'A civic partner in Austin community programs and events.',
+    verify: true,
+  },
+  {
+    slug: 'visit-austin',
+    name: 'Visit Austin',
+    category: 'Civic & Public',
+    region: 'Austin',
+    description: 'Austin’s official destination organization, welcoming visitors to the Live Music Capital of the World.',
+  },
+
+  // ---------------------------------------------------------- slide 10 ----
+  {
+    slug: 'american-legion',
+    name: 'The American Legion',
+    category: 'Civic & Public',
+    region: NATION,
+    description: 'The nation’s largest veterans service organization, serving veterans, servicemembers and their families.',
+  },
+  {
+    slug: 'greater-san-antonio-chamber',
+    name: 'The Greater San Antonio Chamber',
+    category: 'Civic & Public',
+    region: 'San Antonio',
+    description: 'Champions business growth and economic development across the San Antonio region.',
+  },
+  {
+    slug: 'avance-austin',
+    name: 'AVANCE Austin',
+    category: 'Education & Youth',
+    region: 'Austin',
+    description: '“Unlocking America’s Potential” — parent education and early-childhood programs for families.',
+  },
+  {
+    slug: 'san-antonio-river-foundation',
+    name: 'San Antonio River Foundation',
+    category: 'Foundations & Giving',
+    region: 'San Antonio',
+    description: 'Enhances and preserves the San Antonio River through parks, public art and education.',
+  },
+  {
+    slug: 'star-of-hope',
+    name: 'Star of Hope',
+    category: 'Health & Human Services',
+    region: 'Houston',
+    description: 'Provides shelter, recovery and support programs for people experiencing homelessness in Houston.',
+  },
+  {
+    slug: 'nonprofit-austin',
+    name: 'Nonprofit Austin at ACC',
+    category: 'Education & Youth',
+    region: 'Austin',
+    description: 'Training and resources that strengthen Central Texas nonprofits, hosted at Austin Community College.',
+  },
+  {
+    slug: 'sharethemeal',
+    name: 'ShareTheMeal — UN World Food Programme',
+    shortName: 'ShareTheMeal',
+    category: 'Food & Hunger',
+    region: NATION,
+    description: 'The UN World Food Programme’s app that lets anyone share a meal with a child in need.',
+  },
+  {
+    slug: 'united-way-san-antonio',
+    name: 'United Way of San Antonio and Bexar County',
+    shortName: 'United Way San Antonio',
+    category: 'Health & Human Services',
+    region: 'San Antonio',
+    description: 'Mobilizes donors and volunteers to improve lives across San Antonio and Bexar County.',
+  },
+  {
+    slug: 'family-service-san-antonio',
+    name: 'Family Service',
+    category: 'Health & Human Services',
+    region: 'San Antonio',
+    description: '“Support. Strengthen. Serve.” — services that help children and families thrive.',
+    verify: true,
+  },
+  {
+    slug: 'sri-ganesha-temple',
+    name: 'Sri Ganesha Temple — Hindu Temple of North Texas',
+    shortName: 'Sri Ganesha Temple',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'A Hindu temple dedicated to Lord Ganesha, serving devotees across North Texas.',
+  },
+  {
+    slug: 'north-texas-hindu-mandir',
+    name: 'North Texas Hindu Mandir',
+    category: 'Faith & Temples',
+    region: DFW,
+    description: 'A Hindu mandir serving North Texas devotees since 1987.',
+  },
+  {
+    slug: 'hindu-temple-woodlands',
+    name: 'Hindu Temple of The Woodlands',
+    category: 'Faith & Temples',
+    region: 'Houston',
+    city: 'The Woodlands, TX',
+    description: 'A center for culture and devotion serving Greater Houston.',
+  },
+  {
+    slug: 'hindu-temple-central-texas',
+    name: 'Hindu Temple of Central Texas',
+    category: 'Faith & Temples',
+    region: 'Central Texas',
+    city: 'Temple, TX',
+    address: '4309 Midway Drive, Temple, TX 76502',
+    description: 'Omkara Mahaganapathy Devasthanam — a Hindu temple serving Central Texas.',
+  },
+  {
+    slug: 'radha-madhav-dham',
+    name: 'Radha Madhav Dham',
+    category: 'Faith & Temples',
+    region: 'Austin',
+    description:
+      'A Hindu temple and retreat of Jagadguru Kripalu Parishat near Austin — one of the largest in North America.',
+  },
+  {
+    slug: 'iskcon-round-rock',
+    name: 'ISKCON of Round Rock',
+    category: 'Faith & Temples',
+    region: 'Austin',
+    city: 'Round Rock, TX',
+    description: 'A Hare Krishna temple and community center serving the Austin area.',
+  },
+  {
+    slug: 'globalgiving',
+    name: 'GlobalGiving',
+    category: 'Foundations & Giving',
+    region: NATION,
+    description: 'A crowdfunding platform connecting donors with grassroots nonprofits around the world.',
+  },
+]
+
+export const allPartners = RAW.map((p) => {
+  const size = logoSizes[p.slug] ?? { w: 400, h: 200 }
+  return {
+    ...p,
+    logo: `/partners/${p.slug}.webp`,
+    width: size.w,
+    height: size.h,
+    aspect: size.w / size.h,
+  }
+})
+
+/** Link for "find out more" — the official site when we have it, else a search. */
+export function partnerLink(p) {
+  if (p.website) return p.website
+  const q = [p.name, p.city ?? (p.region === NATION ? '' : p.region)].filter(Boolean).join(' ')
+  return `https://www.google.com/search?q=${encodeURIComponent(q)}`
+}

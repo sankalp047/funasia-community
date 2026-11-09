@@ -1,0 +1,17 @@
+{
+  "name": "FunAsia Community Outreach",
+  "short_name": "FunAsia Outreach",
+  "description": "Connecting communities and empowering lives across Dallas–Fort Worth through nonprofit partnerships, women's empowerment and community events.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf6ec",
+  "theme_color": "#0a332b",
+  "lang": "en-US",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

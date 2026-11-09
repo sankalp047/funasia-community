@@ -1,0 +1,534 @@
+{
+ "/images/ISKON.png": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/ISKON-160.webp"
+   ],
+   [
+    320,
+    "/img/ISKON-320.webp"
+   ],
+   [
+    600,
+    "/img/ISKON-600.webp"
+   ]
+  ]
+ },
+ "/images/VIBHA.png": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/VIBHA-160.webp"
+   ],
+   [
+    320,
+    "/img/VIBHA-320.webp"
+   ],
+   [
+    600,
+    "/img/VIBHA-600.webp"
+   ]
+  ]
+ },
+ "/images/Vaishali.jpg": {
+  "w": 1092,
+  "h": 1092,
+  "variants": [
+   [
+    160,
+    "/img/Vaishali-160.webp"
+   ],
+   [
+    320,
+    "/img/Vaishali-320.webp"
+   ],
+   [
+    640,
+    "/img/Vaishali-640.webp"
+   ],
+   [
+    960,
+    "/img/Vaishali-960.webp"
+   ],
+   [
+    1092,
+    "/img/Vaishali-1092.webp"
+   ]
+  ]
+ },
+ "/images/Vaishali2.jpg": {
+  "w": 600,
+  "h": 898,
+  "variants": [
+   [
+    160,
+    "/img/Vaishali2-160.webp"
+   ],
+   [
+    320,
+    "/img/Vaishali2-320.webp"
+   ],
+   [
+    600,
+    "/img/Vaishali2-600.webp"
+   ]
+  ]
+ },
+ "/images/VaishaliB2.jpeg": {
+  "w": 1600,
+  "h": 1064,
+  "variants": [
+   [
+    160,
+    "/img/VaishaliB2-160.webp"
+   ],
+   [
+    320,
+    "/img/VaishaliB2-320.webp"
+   ],
+   [
+    640,
+    "/img/VaishaliB2-640.webp"
+   ],
+   [
+    960,
+    "/img/VaishaliB2-960.webp"
+   ],
+   [
+    1280,
+    "/img/VaishaliB2-1280.webp"
+   ],
+   [
+    1600,
+    "/img/VaishaliB2-1600.webp"
+   ]
+  ]
+ },
+ "/images/banner_main1.jpg": {
+  "w": 1600,
+  "h": 906,
+  "variants": [
+   [
+    160,
+    "/img/banner_main1-160.webp"
+   ],
+   [
+    320,
+    "/img/banner_main1-320.webp"
+   ],
+   [
+    640,
+    "/img/banner_main1-640.webp"
+   ],
+   [
+    960,
+    "/img/banner_main1-960.webp"
+   ],
+   [
+    1280,
+    "/img/banner_main1-1280.webp"
+   ],
+   [
+    1600,
+    "/img/banner_main1-1600.webp"
+   ]
+  ]
+ },
+ "/images/banner_main3.jpg": {
+  "w": 1600,
+  "h": 1261,
+  "variants": [
+   [
+    160,
+    "/img/banner_main3-160.webp"
+   ],
+   [
+    320,
+    "/img/banner_main3-320.webp"
+   ],
+   [
+    640,
+    "/img/banner_main3-640.webp"
+   ],
+   [
+    960,
+    "/img/banner_main3-960.webp"
+   ],
+   [
+    1280,
+    "/img/banner_main3-1280.webp"
+   ],
+   [
+    1600,
+    "/img/banner_main3-1600.webp"
+   ]
+  ]
+ },
+ "/images/dcica.jpg": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/dcica-160.webp"
+   ],
+   [
+    320,
+    "/img/dcica-320.webp"
+   ],
+   [
+    600,
+    "/img/dcica-600.webp"
+   ]
+  ]
+ },
+ "/images/fanicon2.png": {
+  "w": 200,
+  "h": 169,
+  "variants": [
+   [
+    160,
+    "/img/fanicon2-160.webp"
+   ],
+   [
+    200,
+    "/img/fanicon2-200.webp"
+   ]
+  ]
+ },
+ "/images/heartfulness.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/heartfulness-160.webp"
+   ],
+   [
+    200,
+    "/img/heartfulness-200.webp"
+   ]
+  ]
+ },
+ "/images/hindu_fortworth.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/hindu_fortworth-160.webp"
+   ],
+   [
+    200,
+    "/img/hindu_fortworth-200.webp"
+   ]
+  ]
+ },
+ "/images/maratha.png": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/maratha-160.webp"
+   ],
+   [
+    320,
+    "/img/maratha-320.webp"
+   ],
+   [
+    600,
+    "/img/maratha-600.webp"
+   ]
+  ]
+ },
+ "/images/neelam.jpg": {
+  "w": 300,
+  "h": 300,
+  "variants": [
+   [
+    160,
+    "/img/neelam-160.webp"
+   ],
+   [
+    300,
+    "/img/neelam-300.webp"
+   ]
+  ]
+ },
+ "/images/sewa.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/sewa-160.webp"
+   ],
+   [
+    200,
+    "/img/sewa-200.webp"
+   ]
+  ]
+ },
+ "/images/sewa_runninig.jpeg": {
+  "w": 1206,
+  "h": 766,
+  "variants": [
+   [
+    160,
+    "/img/sewa_runninig-160.webp"
+   ],
+   [
+    320,
+    "/img/sewa_runninig-320.webp"
+   ],
+   [
+    640,
+    "/img/sewa_runninig-640.webp"
+   ],
+   [
+    960,
+    "/img/sewa_runninig-960.webp"
+   ],
+   [
+    1206,
+    "/img/sewa_runninig-1206.webp"
+   ]
+  ]
+ },
+ "/images/sewa_winner.jpeg": {
+  "w": 1206,
+  "h": 700,
+  "variants": [
+   [
+    160,
+    "/img/sewa_winner-160.webp"
+   ],
+   [
+    320,
+    "/img/sewa_winner-320.webp"
+   ],
+   [
+    640,
+    "/img/sewa_winner-640.webp"
+   ],
+   [
+    960,
+    "/img/sewa_winner-960.webp"
+   ],
+   [
+    1206,
+    "/img/sewa_winner-1206.webp"
+   ]
+  ]
+ },
+ "/images/solace.jpg": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/solace-160.webp"
+   ],
+   [
+    320,
+    "/img/solace-320.webp"
+   ],
+   [
+    600,
+    "/img/solace-600.webp"
+   ]
+  ]
+ },
+ "/images/solace2.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/solace2-160.webp"
+   ],
+   [
+    200,
+    "/img/solace2-200.webp"
+   ]
+  ]
+ },
+ "/images/v1.jpg": {
+  "w": 900,
+  "h": 600,
+  "variants": [
+   [
+    160,
+    "/img/v1-160.webp"
+   ],
+   [
+    320,
+    "/img/v1-320.webp"
+   ],
+   [
+    640,
+    "/img/v1-640.webp"
+   ],
+   [
+    900,
+    "/img/v1-900.webp"
+   ]
+  ]
+ },
+ "/images/vaishali4.jpg": {
+  "w": 1080,
+  "h": 864,
+  "variants": [
+   [
+    160,
+    "/img/vaishali4-160.webp"
+   ],
+   [
+    320,
+    "/img/vaishali4-320.webp"
+   ],
+   [
+    640,
+    "/img/vaishali4-640.webp"
+   ],
+   [
+    960,
+    "/img/vaishali4-960.webp"
+   ],
+   [
+    1080,
+    "/img/vaishali4-1080.webp"
+   ]
+  ]
+ },
+ "/images/vaishaliB1.jpeg": {
+  "w": 1600,
+  "h": 1064,
+  "variants": [
+   [
+    160,
+    "/img/vaishaliB1-160.webp"
+   ],
+   [
+    320,
+    "/img/vaishaliB1-320.webp"
+   ],
+   [
+    640,
+    "/img/vaishaliB1-640.webp"
+   ],
+   [
+    960,
+    "/img/vaishaliB1-960.webp"
+   ],
+   [
+    1280,
+    "/img/vaishaliB1-1280.webp"
+   ],
+   [
+    1600,
+    "/img/vaishaliB1-1600.webp"
+   ]
+  ]
+ },
+ "/images/vaishaliB3.jpeg": {
+  "w": 1600,
+  "h": 2131,
+  "variants": [
+   [
+    160,
+    "/img/vaishaliB3-160.webp"
+   ],
+   [
+    320,
+    "/img/vaishaliB3-320.webp"
+   ],
+   [
+    640,
+    "/img/vaishaliB3-640.webp"
+   ],
+   [
+    960,
+    "/img/vaishaliB3-960.webp"
+   ],
+   [
+    1280,
+    "/img/vaishaliB3-1280.webp"
+   ],
+   [
+    1600,
+    "/img/vaishaliB3-1600.webp"
+   ]
+  ]
+ },
+ "/images/vibha4.png": {
+  "w": 482,
+  "h": 338,
+  "variants": [
+   [
+    160,
+    "/img/vibha4-160.webp"
+   ],
+   [
+    320,
+    "/img/vibha4-320.webp"
+   ],
+   [
+    482,
+    "/img/vibha4-482.webp"
+   ]
+  ]
+ },
+ "/images/vishnav.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/vishnav-160.webp"
+   ],
+   [
+    200,
+    "/img/vishnav-200.webp"
+   ]
+  ]
+ },
+ "/images/vyo.png": {
+  "w": 200,
+  "h": 200,
+  "variants": [
+   [
+    160,
+    "/img/vyo-160.webp"
+   ],
+   [
+    200,
+    "/img/vyo-200.webp"
+   ]
+  ]
+ },
+ "/images/zakira.png": {
+  "w": 600,
+  "h": 450,
+  "variants": [
+   [
+    160,
+    "/img/zakira-160.webp"
+   ],
+   [
+    320,
+    "/img/zakira-320.webp"
+   ],
+   [
+    600,
+    "/img/zakira-600.webp"
+   ]
+  ]
+ }
+}

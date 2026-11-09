@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — drawn from the FunAsia Outreach logo crimson,
+     deep evergreen from the legacy site header, warm cream ground,
+     and a marigold accent for cultural warmth. */
+  --color-cream-50: #fdfbf5;
+  --color-cream-100: #faf6ec;
+  --color-cream-200: #f3ecda;
+  --color-cream-300: #e9dfc6;
+
+  --color-ever-950: #06231d;
+  --color-ever-900: #0a332b;
+  --color-ever-800: #0e4237;
+  --color-ever-700: #145446;
+  --color-ever-600: #1c6b58;
+  --color-ever-100: #d9ece5;
+
+  --color-brand-50: #fdeef2;
+  --color-brand-100: #fbdce4;
+  --color-brand-200: #f7b3c4;
+  --color-brand-400: #ef5c7d;
+  --color-brand-500: #e83e64;
+  --color-brand-600: #d6294d; /* ≥4.5:1 with cream text (WCAG AA) */
+  --color-brand-700: #c11f42;
+  --color-brand-800: #9c1a36;
+
+  --color-marigold-100: #fdeed3;
+  --color-marigold-300: #f8cd7f;
+  --color-marigold-400: #f5b955;
+  --color-marigold-500: #f0a32b;
+  --color-marigold-600: #d98a15;
+
+  --color-ink-900: #1b2724;
+  --color-ink-600: #46554f;
+  --color-ink-400: #71817a;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 24px 60px -24px rgb(10 51 43 / 0.22);
+  --shadow-card: 0 12px 40px -16px rgb(10 51 43 / 0.16);
+  --shadow-glow: 0 16px 50px -12px rgb(224 45 82 / 0.45);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 52s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-spin-slow: spin 48s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+/* Lenis drives scrolling when active — let it own the easing */
+html.lenis {
+  scroll-behavior: auto;
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  @apply bg-cream-100 font-sans text-ink-900 antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  @apply bg-brand-600 text-cream-50;
+}
+
+/* Elegant thin scrollbar for the horizontal gallery on mobile */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Fluid display sizes */
+.text-display-xl {
+  font-size: clamp(2.6rem, 6.4vw + 1rem, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.text-display-lg {
+  font-size: clamp(2rem, 3.4vw + 0.8rem, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.text-display-md {
+  font-size: clamp(1.5rem, 2vw + 0.7rem, 2.2rem);
+  line-height: 1.15;
+}
+
+/* Film-grain overlay — one fixed layer over everything, barely-there */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 80;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  opacity: 0.05;
+  animation: grain-shift 0.9s steps(2) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(1.5%, -1%); }
+  100% { transform: translate(-1%, 1.5%); }
+}
+/* Phones/tablets: skip the grain — a full-screen animated layer costs battery
+   and scroll smoothness for an effect that's barely visible on small screens */
+@media (max-width: 1023px), (pointer: coarse) {
+  .grain { display: none; }
+}
+
+/* Keep tap highlight on-brand and remove the grey flash on iOS/Android */
+html {
+  -webkit-tap-highlight-color: rgb(214 41 77 / 0.12);
+  text-size-adjust: 100%;
+}
+
+/* Outlined ghost typography behind section headings */
+.ghost-text {
+  -webkit-text-stroke: 1.5px rgb(10 51 43 / 0.07);
+  color: transparent;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+.ghost-text-light {
+  -webkit-text-stroke: 1.5px rgb(253 251 245 / 0.08);
+}
+
+/* Decorative underline stroke used beneath highlighted words */
+.stroke-highlight {
+  position: relative;
+  white-space: nowrap;
+}
+.stroke-highlight > svg {
+  position: absolute;
+  left: 0;
+  bottom: -0.18em;
+  width: 100%;
+  height: 0.32em;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>FunAsia Community Outreach | Connecting DFW Communities</title>
+    <meta
+      name="description"
+      content="FunAsia Community Outreach supports nonprofits, champions women leaders and hosts culturally vibrant community events across Dallas–Fort Worth. Partner with us."
+    />
+    <link rel="canonical" href="__SITE_URL__/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#0a332b" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FunAsia Community Outreach" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:title" content="FunAsia Community Outreach — Connecting Communities. Empowering Lives." />
+    <meta
+      property="og:description"
+      content="Supporting nonprofits, women leaders and culturally vibrant community events across Dallas–Fort Worth, Texas."
+    />
+    <meta property="og:image" content="__SITE_URL__/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FunAsia Community Outreach — Connecting Communities. Empowering Lives." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FunAsia Community Outreach — Connecting Communities. Empowering Lives." />
+    <meta
+      name="twitter:description"
+      content="Supporting nonprofits, women leaders and culturally vibrant community events across Dallas–Fort Worth, Texas."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.jpg" />
+
+    <!-- Icons + install -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- AI / LLM-readable summary of this site -->
+    <link rel="alternate" type="text/markdown" title="LLM summary" href="/llms.txt" />
+
+    <!-- Fonts: loaded without blocking the first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Inter:wght@400..700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&family=Inter:wght@400..700&display=swap"
+      />
+    </noscript>
+
+    <!--
+      First desktop visit plays an intro curtain. Hide the pre-rendered page
+      until React draws the curtain so it doesn't flash first (see Landing.jsx).
+      Must match introAlreadySeen() in src/pages/Landing.jsx.
+    -->
+    <script>
+      try {
+        if (
+          location.pathname === '/' &&
+          !matchMedia('(max-width: 1023px), (prefers-reduced-motion: reduce)').matches &&
+          sessionStorage.getItem('fa-intro-seen') !== '1'
+        ) {
+          document.documentElement.classList.add('intro-pending')
+          // Safety net: never keep the page hidden if the app is slow or fails
+          setTimeout(function () { document.documentElement.classList.remove('intro-pending') }, 4000)
+        }
+      } catch (e) {}
+    </script>
+    <style>
+      html.intro-pending body { background: #06231d; }
+      html.intro-pending #root { visibility: hidden; }
+    </style>
+    <!--structured-data-->
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

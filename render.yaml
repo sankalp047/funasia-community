@@ -1,0 +1,78 @@
+# Render Blueprint — FunAsia Community Outreach (static site)
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    runtime: static
+    name: funasia-community
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      # Public URL of the site — used for canonical tags, sitemap, robots.txt
+      # and llms.txt. Change it if you launch on a different domain.
+      - key: VITE_SITE_URL
+        value: https://funasiacommunity.com
+      # Firebase web config. `sync: false` keeps the values out of this repo:
+      # Render asks for them when the Blueprint is created (copy them from your
+      # local .env, or Firebase console → Project settings → Your apps).
+      - key: VITE_FIREBASE_API_KEY
+        sync: false
+      - key: VITE_FIREBASE_AUTH_DOMAIN
+        sync: false
+      - key: VITE_FIREBASE_PROJECT_ID
+        sync: false
+      - key: VITE_FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: VITE_FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: VITE_FIREBASE_APP_ID
+        sync: false
+      - key: VITE_FIREBASE_MEASUREMENT_ID
+        sync: false
+    routes:
+      # Old funasiacommunity.com pages → new home page (keeps links + rankings)
+      - type: redirect
+        source: /index.php
+        destination: /
+      - type: redirect
+        source: /social.php
+        destination: /#gallery
+      # Sign-in and the community app are client-side routes served by the
+      # app shell. (Render applies rewrites only when no file exists at a path.)
+      - type: rewrite
+        source: /auth
+        destination: /app.html
+      - type: rewrite
+        source: /community
+        destination: /app.html
+      - type: rewrite
+        source: /community/*
+        destination: /app.html
+    headers:
+      # Fingerprinted build assets never change → cache for a year
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      # Optimized photos and partner logos → cache for 30 days
+      - path: /img/*
+        name: Cache-Control
+        value: public, max-age=2592000
+      - path: /partners/*
+        name: Cache-Control
+        value: public, max-age=2592000
+      - path: /images/*
+        name: Cache-Control
+        value: public, max-age=2592000
+      # Security basics for every response
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()

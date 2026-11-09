@@ -1,0 +1,156 @@
+rules_version = '2';
+
+// FunAsia Community — Firestore security rules.
+// Deploy with: npx firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function authed() {
+      return request.auth != null;
+    }
+
+    // ------------------------------------------------------------- users ---
+    match /users/{uid} {
+      allow read: if authed();
+      allow create, update: if authed() && request.auth.uid == uid;
+    }
+
+    // ------------------------------------------------------------ groups ---
+    match /groups/{groupId} {
+      allow read: if authed();
+
+      allow create: if authed()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.memberIds == [request.auth.uid]
+        && request.resource.data.admins == [request.auth.uid];
+
+      allow delete: if authed() && resource.data.ownerId == request.auth.uid;
+
+      allow update: if authed() && (
+        request.auth.uid in resource.data.admins
+        || selfJoinPublic()
+        || selfRequest()
+        || selfRemoval()
+        || memberLastMessage()
+      );
+
+      function changedKeys() {
+        return request.resource.data.diff(resource.data).affectedKeys();
+      }
+
+      // Joining a public group: the only membership change is adding yourself.
+      function selfJoinPublic() {
+        let added = request.resource.data.memberIds.toSet().difference(resource.data.memberIds.toSet());
+        let removed = resource.data.memberIds.toSet().difference(request.resource.data.memberIds.toSet());
+        return resource.data.privacy == 'public'
+          && changedKeys().hasOnly(['memberIds', 'memberCount'])
+          && added == [request.auth.uid].toSet()
+          && removed.size() == 0;
+      }
+
+      // Requesting to join: the only change is adding yourself to pendingIds.
+      function selfRequest() {
+        let added = request.resource.data.pendingIds.toSet().difference(resource.data.pendingIds.toSet());
+        let removed = resource.data.pendingIds.toSet().difference(request.resource.data.pendingIds.toSet());
+        return changedKeys().hasOnly(['pendingIds'])
+          && added == [request.auth.uid].toSet()
+          && removed.size() == 0;
+      }
+
+      // Leaving / cancelling a request: only removals, and only of yourself.
+      function selfRemoval() {
+        let mAdded = request.resource.data.memberIds.toSet().difference(resource.data.memberIds.toSet());
+        let mRemoved = resource.data.memberIds.toSet().difference(request.resource.data.memberIds.toSet());
+        let pAdded = request.resource.data.pendingIds.toSet().difference(resource.data.pendingIds.toSet());
+        let pRemoved = resource.data.pendingIds.toSet().difference(request.resource.data.pendingIds.toSet());
+        let aAdded = request.resource.data.admins.toSet().difference(resource.data.admins.toSet());
+        let aRemoved = resource.data.admins.toSet().difference(request.resource.data.admins.toSet());
+        return changedKeys().hasOnly(['memberIds', 'pendingIds', 'memberCount', 'admins'])
+          && mAdded.size() == 0 && mRemoved.hasOnly([request.auth.uid])
+          && pAdded.size() == 0 && pRemoved.hasOnly([request.auth.uid])
+          && aAdded.size() == 0 && aRemoved.hasOnly([request.auth.uid]);
+      }
+
+      // Any member may refresh the lastMessage preview when sending.
+      function memberLastMessage() {
+        return changedKeys().hasOnly(['lastMessage'])
+          && request.auth.uid in resource.data.memberIds;
+      }
+
+      match /members/{uid} {
+        allow read: if authed();
+        allow create: if authed()
+          && (uid == request.auth.uid
+              || request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.admins);
+        allow update: if authed()
+          && request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.admins;
+        allow delete: if authed()
+          && (uid == request.auth.uid
+              || request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.admins);
+      }
+
+      match /requests/{uid} {
+        allow read: if authed()
+          && (uid == request.auth.uid
+              || request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.admins);
+        allow create: if authed() && uid == request.auth.uid;
+        allow delete: if authed()
+          && (uid == request.auth.uid
+              || request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.admins);
+      }
+
+      match /messages/{msgId} {
+        allow read: if authed()
+          && request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.memberIds;
+        allow create: if authed()
+          && request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.memberIds
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 4000;
+      }
+    }
+
+    // -------------------------------------------------------- inquiries ---
+    // Public contact form: anyone may create one well-formed inquiry; nobody
+    // can read, edit or delete through the client (use the Firebase console).
+    match /inquiries/{inquiryId} {
+      allow create: if
+        request.resource.data.keys().hasOnly(['name', 'phone', 'email', 'topic', 'message', 'source', 'createdAt'])
+        && request.resource.data.keys().hasAll(['name', 'phone', 'source', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 120
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 7 && request.resource.data.phone.size() <= 40
+        && request.resource.data.source == 'website-contact-form'
+        && request.resource.data.createdAt == request.time
+        && (!('email' in request.resource.data)
+            || (request.resource.data.email is string && request.resource.data.email.size() <= 200))
+        && (!('topic' in request.resource.data)
+            || (request.resource.data.topic is string && request.resource.data.topic.size() <= 80))
+        && (!('message' in request.resource.data)
+            || (request.resource.data.message is string && request.resource.data.message.size() <= 4000));
+      allow read, update, delete: if false;
+    }
+
+    // --------------------------------------------------------------- DMs ---
+    match /dms/{dmId} {
+      allow read: if authed() && request.auth.uid in resource.data.participants;
+      allow create: if authed()
+        && request.auth.uid in request.resource.data.participants
+        && request.resource.data.participants.size() == 2;
+      allow update: if authed() && request.auth.uid in resource.data.participants;
+
+      match /messages/{msgId} {
+        allow read: if authed()
+          && request.auth.uid in get(/databases/$(database)/documents/dms/$(dmId)).data.participants;
+        allow create: if authed()
+          && request.auth.uid in get(/databases/$(database)/documents/dms/$(dmId)).data.participants
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 4000;
+      }
+    }
+  }
+}
